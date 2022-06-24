@@ -7,10 +7,12 @@
       </div>
     </nav>
     <div class="container">
-              <TheMain/>
-          
-          </div>
-    
+      <div class="px-5 py-3">
+        <div class="px-5">
+          <TheMain/>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,11 +32,12 @@ export default {
     background-color: #2D3B46;
 
     img {
-      max-width: 45px;
+      max-width: 40px;
     }
   }
 
   #app {
     background-color: #1D2E3B;
+    overflow: auto;
   }
 </style>
