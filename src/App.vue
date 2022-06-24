@@ -1,15 +1,16 @@
 <template>
   <div id="app" class="vh-100">
     <nav class="p-2">
-      <div class="d-flex align-items-center justify-content-start">
+      <div class="d-flex align-items-center justify-content-between">
           
         <img src="../public/logo-small.svg" alt="">
+        <SearchByGenre @filterGenre="setSelectedGenre"></SearchByGenre>
       </div>
     </nav>
     <div class="container">
       <div class="px-5 py-3">
         <div class="px-5">
-          <TheMain/>
+          <TheMain :music-list="musicList"></TheMain>
         </div>
       </div>
     </div>
@@ -18,11 +19,32 @@
 
 <script>
 import TheMain from './components/TheMain.vue'
+import SearchByGenre from './components/SearchByGenre.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
-    TheMain
+    TheMain, SearchByGenre
+  },
+  data(){
+    return {
+      musicList: null,
+      genreList: [],
+      selectedGenre: '0'
+    }
+  },
+
+  methods: {
+    setSelectedGenre(genre){
+      this.selectedGenre = genre
+    }
+  },
+  mounted(){
+    axios.get('https://flynn.boolean.careers/exercises/api/array/music')
+      .then((resp) => {
+        this.musicList = resp.data.response
+      })
   }
 }
 </script>

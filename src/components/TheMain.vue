@@ -16,20 +16,12 @@
 </template>
 
 <script>
-import axios from 'axios'
+
 
 export default {
   name: 'TheMain',
-  data(){
-    return {
-      musicList: null
-    }
-  },
-  mounted(){
-    axios.get('https://flynn.boolean.careers/exercises/api/array/music')
-      .then((resp) => {
-        this.musicList = resp.data.response
-      })
+  props: {
+    musicList: Object
   }
 }
 </script>
