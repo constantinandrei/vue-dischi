@@ -7,7 +7,7 @@
             <img :src="album.poster" alt="">
           </div>
           <h5 class="pt-4 text-white text-uppercase">{{ album.title }}</h5>
-          <div class="text-muted mt-4">{{ album.title }}</div>
+          <div class="text-muted mt-4">{{ album.author }}</div>
           <div class="text-muted">{{ album.year }}</div>
         </div>
       </div>
