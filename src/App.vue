@@ -4,7 +4,10 @@
       <div class="d-flex align-items-center justify-content-between">
           
         <img src="../public/logo-small.svg" alt="">
-        <SearchByGenre @filterGenre="setSelectedGenre" :genre-list="genreList"></SearchByGenre>
+        <div class="flex-grow-1 d-flex align-items-center justify-content-center">
+          <SearchByGenre @filterGenre="setSelectedGenre" :genre-list="genreList"></SearchByGenre>
+        </div>
+        
       </div>
     </nav>
     <div class="container">
