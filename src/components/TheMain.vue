@@ -21,7 +21,7 @@
 export default {
   name: 'TheMain',
   props: {
-    musicList: Object
+    musicList: Array
   }
 }
 </script>

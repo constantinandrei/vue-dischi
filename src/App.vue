@@ -4,7 +4,7 @@
       <div class="d-flex align-items-center justify-content-between">
           
         <img src="../public/logo-small.svg" alt="">
-        <SearchByGenre @filterGenre="setSelectedGenre"></SearchByGenre>
+        <SearchByGenre @filterGenre="setSelectedGenre" :genre-list="genreList"></SearchByGenre>
       </div>
     </nav>
     <div class="container">
@@ -29,7 +29,8 @@ export default {
   },
   data(){
     return {
-      musicList: null,
+      initialMusicList: null,
+      musicList: [],
       genreList: [],
       selectedGenre: '0'
     }
@@ -37,13 +38,31 @@ export default {
 
   methods: {
     setSelectedGenre(genre){
-      this.selectedGenre = genre
+      this.selectedGenre = genre;
+      if (this.selectedGenre === '0'){
+        this.musicList = this.initialMusicList
+      } else {
+          this.musicList = []
+          this.initialMusicList.forEach(element => {
+            if (element.genre === this.selectedGenre){
+              this.musicList.push(element)
+            }
+        })
+      }
     }
   },
   mounted(){
     axios.get('https://flynn.boolean.careers/exercises/api/array/music')
       .then((resp) => {
-        this.musicList = resp.data.response
+        this.initialMusicList = resp.data.response
+        this.musicList = this.initialMusicList
+
+        // generate genres list
+        this.musicList.forEach((element => {
+          if (!this.genreList.includes(element.genre)){
+            this.genreList.push(element.genre)
+          }
+        }))
       })
   }
 }
